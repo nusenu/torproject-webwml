@@ -132,6 +132,10 @@ country)
     worry?</a></li>
     <li><a href="#SocksAndDNS">How do I check if my application that uses
     SOCKS is leaking DNS requests?</a></li>
+    <li><a href="#TorClientOnADifferentComputerThanMyApplications">I want to run my Tor client on a
+    different computer than my applications.</a></li>
+    <li><a href="#ServerClient">Can I install Tor on a central server, and
+    have my clients connect to it?</a></li>
     </ul>
 
     <a id="relay"></a>
@@ -140,9 +144,11 @@ country)
 
     <li><a href="#HowDoIDecide">How do I decide if I should run a relay?
     </a></li>
+    <li><a href="#MostNeededRelayType">What type of relays are most needed?</a></li>
     <li><a href="#WhyIsntMyRelayBeingUsedMore">Why isn't my relay being
     used more?</a></li>
-    <li><a href="#IDontHaveAStaticIP">I don't have a static IP.</a></li>
+    <li><a href="#IDontHaveAStaticIP">Can I run a Tor relay using a dynamic IP address?</a></li>
+    <li><a href="#IPv6Relay">Can I use IPv6 on my relay?</a></li>
     <li><a href="#PortscannedMore">Why do I get portscanned more often
     when I run a Tor relay?</a></li>
     <li><a href="#HighCapacityConnection">How can I get Tor to fully
@@ -166,10 +172,6 @@ be?</a></li>
     Why did that happen?</a></li>
     <li><a href="#MyRelayRecentlyGotTheGuardFlagAndTrafficDroppedByHalf">My
     relay recently got the Guard flag and traffic dropped by half.</a></li>
-    <li><a href="#TorClientOnADifferentComputerThanMyApplications">I want to run my Tor client on a
-    different computer than my applications.</a></li>
-    <li><a href="#ServerClient">Can I install Tor on a central server, and
-    have my clients connect to it?</a></li>
     <li><a href="#JoinTheNetwork">So I can just configure a nickname and
     ORPort and join the network?</a></li>
     <li><a href="#RelayOrBridge">Should I be a normal relay or bridge
@@ -1514,7 +1516,7 @@ href="http://www.crowdstrike.com/community-tools/index.html#tool-79">proposed
     Tor Browser? How do I verify a build?</a></h3>
 
     <p>
-    Start with <a href="https://gitweb.torproject.org/builders/tor-browser-bundle.git">https://gitweb.torproject.org/builders/tor-browser-bundle.git</a> and <a href="https://gitweb.torproject.org/builders/tor-browser-bundle.git/tree/gitian/README.build">https://gitweb.torproject.org/builders/tor-browser-bundle.git/tree/gitian/README.build</a>.
+    Tor Browser is built from the <a href="https://gitweb.torproject.org/builders/tor-browser-build.git/">tor-browser-build.git git repository</a>. You can have a look at the <a href="https://gitweb.torproject.org/builders/tor-browser-build.git/tree/README">README file</a> for the build instructions. There is also some informations in the <a href="https://trac.torproject.org/projects/tor/wiki/doc/TorBrowser/Hacking">Tor Browser Hacking Guide</a>.
     </p>
 
 
@@ -2026,6 +2028,80 @@ from the source code release tor-0.2.4.16-rc is:
 
     <hr>
 
+    <a id="TorClientOnADifferentComputerThanMyApplications"></a>
+    <h3><a class="anchor" href="#TorClientOnADifferentComputerThanMyApplications">I
+    want to run my Tor client on a different computer than my applications.
+    </a></h3>
+    <p>
+    By default, your Tor client only listens for applications that
+    connect from localhost. Connections from other computers are
+    refused. If you want to torify applications on different computers
+    than the Tor client, you should edit your torrc to define
+    SocksListenAddress 0.0.0.0 and then restart (or hup) Tor. If you
+    want to get more advanced, you can configure your Tor client on a
+    firewall to bind to your internal IP but not your external IP.
+    </p>
+
+    <hr>
+
+    <a id="ServerClient"></a>
+    <h3><a class="anchor" href="#ServerClient">Can I install Tor on a
+    central server, and have my clients connect to it?</a></h3>
+    <p>
+     Yes. Tor can be configured as a client or a relay on another
+     machine, and allow other machines to be able to connect to it
+     for anonymity. This is most useful in an environment where many
+     computers want a gateway of anonymity to the rest of the world.
+     However, be forwarned that with this configuration, anyone within
+     your private network (existing between you and the Tor
+     client/relay) can see what traffic you are sending in clear text.
+     The anonymity doesn't start until you get to the Tor relay.
+     Because of this, if you are the controller of your domain and you
+     know everything's locked down, you will be OK, but this configuration
+     may not be suitable for large private networks where security is
+     key all around.
+    </p>
+    <p>
+Configuration is simple, editing your torrc file's SocksListenAddress
+according to the following examples:
+    </p>
+    <pre>
+
+  #This provides local interface access only,
+  #needs SocksPort to be greater than 0
+  SocksListenAddress 127.0.0.1
+
+  #This provides access to Tor on a specified interface
+  SocksListenAddress 192.168.x.x:9100
+
+  #Accept from all interfaces
+  SocksListenAddress 0.0.0.0:9100
+   </pre>
+    <p>
+You can state multiple listen addresses, in the case that you are
+part of several networks or subnets.
+    </p>
+    <pre>
+  SocksListenAddress 192.168.x.x:9100 #eth0
+  SocksListenAddress 10.x.x.x:9100 #eth1
+    </pre>
+    <p>
+After this, your clients on their respective networks/subnets would specify
+a socks proxy with the address and port you specified SocksListenAddress
+to be.
+    </p>
+    <p>
+Please note that the SocksPort configuration option gives the port ONLY for
+localhost (127.0.0.1). When setting up your SocksListenAddress(es), you need
+to give the port with the address, as shown above.
+    <p>
+If you are interested in forcing all outgoing data through the central Tor
+client/relay, instead of the server only being an optional proxy, you may find
+the program iptables (for *nix) useful.
+    </p>
+
+    <hr>
+
     <a id="RunningATorRelay"></a>
     <h2><a class="anchor" href="#RunningATorRelay">Running a Tor relay:</a></h2>
 
@@ -2034,9 +2110,24 @@ from the source code release tor-0.2.4.16-rc is:
     run a relay?</a></h3>
     <p>
     We're looking for people with reasonably reliable Internet connections,
-    that have at least 250 kilobytes/second each way. If that's you, please
-    consider <a href="https://www.torproject.org/docs/tor-relay-debian">helping
-    out</a>.
+    that have at least 1 MByte/second (that is 8 MBit/second) available bandwidth each way. If that's you, please
+    consider <a href="<wiki>TorRelayGuide">running a Tor relay</a>.
+    </p>
+    <p>
+    Even if you do not have at least 8 MBit/s of available bandwidth you can still help the Tor network by running a <a href="<page docs/pluggable-transports>#operator">Tor bridge with obfs4 support</a>. In that case you should have at least 1 MBit/s of available bandwidth.
+    </p>
+
+    <hr>
+
+    <a id="MostNeededRelayType"></a>
+    <h3><a class="anchor" href="#MostNeededRelayType">What type of relays are most needed?</a></h3>
+    <p>
+    <ul>
+    <li>The exit relay is the most needed relay type but it also comes with the highest legal exposure and risk (and you
+    should NOT run them from your home).</li>
+    <li>If you are looking to run a relay with minimal effort, fast guard relays are also very useful</li>
+    <li>followed by bridges.</li>
+    </ul>
     </p>
 
     <hr>
@@ -2063,8 +2154,8 @@ from the source code release tor-0.2.4.16-rc is:
     <hr>
 
     <a id="IDontHaveAStaticIP"></a>
-    <h3><a class="anchor" href="#IDontHaveAStaticIP">I don't have a static
-    IP.</a></h3>
+    <h3><a class="anchor" href="#IDontHaveAStaticIP">Can I run a Tor relay using a
+    dynamic IP address?</a></h3>
 
     <p>
     Tor can handle relays with dynamic IP addresses just fine. Just leave
@@ -2073,6 +2164,18 @@ from the source code release tor-0.2.4.16-rc is:
 
     <hr>
 
+    <a id="IPv6Relay"></a>
+    <h3><a class="anchor" href="#IPv6Relay">Can I use IPv6 on my relay?</a></h3>
+
+    <p>
+    Tor has <a href="<wiki>org/roadmaps/Tor/IPv6Features">partial</a> support for IPv6 and we
+    encourage every relay operator to <a href="<wiki>TorRelayGuide#IPv6">enable IPv6 functionality
+    </a> in their torrc configuration files when IPv6 connectivity is available.
+    For the time being Tor will require IPv4 addresses on relays, you can not run a Tor relay
+    on a host with IPv6 addresses only.
+    </p>
+
+    <hr>
     <a id="PortscannedMore"></a>
     <h3><a class="anchor" href="#PortscannedMore">Why do I get portscanned
     more often when I run a Tor relay?</a></h3>
@@ -2120,15 +2223,10 @@ need to be?</a></h3>
     </p>
 
     <ul>
-    <li>Tor has built-in support for <a
-    href="#BandwidthShaping">
-    rate limiting</a>. Further, if you have a fast
-    link but want to limit the number of bytes per
-    day (or week or month) that you donate, check out the <a
-
-href="#LimitTotalBandwidth">
-hibernation
-    feature</a>.
+    <li>It's fine if the relay goes offline sometimes. The directories
+    notice this quickly and stop advertising the relay. Just try to make
+    sure it's not too often, since connections using the relay when it
+    disconnects will break.
     </li>
     <li>Each Tor relay has an <a href="#ExitPolicies">exit policy</a>
 that
@@ -2138,20 +2236,6 @@ from
 your
     relay, you can set it up to only allow connections to other Tor
 relays.
-    </li>
-    <li>It's fine if the relay goes offline sometimes. The directories
-    notice this quickly and stop advertising the relay. Just try to make
-    sure it's not too often, since connections using the relay when it
-    disconnects will break.
-    </li>
-    <li>We can handle relays with dynamic IPs just fine &mdash; simply
-    leave the Address config option blank, and Tor will try to guess.
-    </li>
-    <li>If your relay is behind a NAT and it doesn't know its public
-    IP (e.g. it has an IP of 192.168.x.y), you'll need to set up port
-    forwarding. Forwarding TCP connections is system dependent but
-    <a href="#BehindANAT">this FAQ entry</a>
-    offers some examples on how to do this.
     </li>
     <li>Your relay will passively estimate and advertise its recent
     bandwidth capacity, so high-bandwidth relays will attract more users
@@ -2369,8 +2453,8 @@ exit
     policies are propagated to Tor clients via the directory, so clients
     will automatically avoid picking exit relays that would refuse to
     exit to their intended destination. This way each relay can decide
-    the services, hosts, and networks he wants to allow connections to,
-    based on abuse potential and his own situation. Read the FAQ entry
+    the services, hosts, and networks it wants to allow connections to,
+    based on abuse potential and its own situation. Read the FAQ entry
 on
     <a href="<page docs/faq-abuse>#TypicalAbuses">issues you might
 encounter</a>
@@ -2457,12 +2541,10 @@ users
     the BadExit flag why did that happen?</a></h3>
 
     <p>If you got this flag then we either discovered a problem or suspicious
-    activity coming from your exit and weren't able to contact you. The reason
-    for most flaggings are documented on the <a
-    href="https://trac.torproject.org/projects/tor/wiki/doc/badRelays">bad
-    relays wiki</a>. Please <a
-    href="<page about/contact>">contact us</a> so
-    we can sort out the issue.</p>
+    activity when routing traffic through your exit and weren't able to contact you.
+    Please reach out to the <a href="mailto:bad-relays@lists.torproject.org">bad-relays team</a>
+    so we can sort out the issue.
+    </p>
 
     <hr>
 
@@ -2481,87 +2563,13 @@ users
 
     <hr>
 
-    <a id="TorClientOnADifferentComputerThanMyApplications"></a>
-    <h3><a class="anchor" href="#TorClientOnADifferentComputerThanMyApplications">I
-    want to run my Tor client on a different computer than my applications.
-    </a></h3>
-    <p>
-    By default, your Tor client only listens for applications that
-    connect from localhost. Connections from other computers are
-    refused. If you want to torify applications on different computers
-    than the Tor client, you should edit your torrc to define
-    SocksListenAddress 0.0.0.0 and then restart (or hup) Tor. If you
-    want to get more advanced, you can configure your Tor client on a
-    firewall to bind to your internal IP but not your external IP.
-    </p>
-
-    <hr>
-
-    <a id="ServerClient"></a>
-    <h3><a class="anchor" href="#ServerClient">Can I install Tor on a
-    central server, and have my clients connect to it?</a></h3>
-    <p>
-     Yes. Tor can be configured as a client or a relay on another
-     machine, and allow other machines to be able to connect to it
-     for anonymity. This is most useful in an environment where many
-     computers want a gateway of anonymity to the rest of the world.
-     However, be forwarned that with this configuration, anyone within
-     your private network (existing between you and the Tor
-     client/relay) can see what traffic you are sending in clear text.
-     The anonymity doesn't start until you get to the Tor relay.
-     Because of this, if you are the controller of your domain and you
-     know everything's locked down, you will be OK, but this configuration
-     may not be suitable for large private networks where security is
-     key all around.
-    </p>
-    <p>
-Configuration is simple, editing your torrc file's SocksListenAddress
-according to the following examples:
-    </p>
-    <pre>
-
-  #This provides local interface access only,
-  #needs SocksPort to be greater than 0
-  SocksListenAddress 127.0.0.1
-
-  #This provides access to Tor on a specified interface
-  SocksListenAddress 192.168.x.x:9100
-
-  #Accept from all interfaces
-  SocksListenAddress 0.0.0.0:9100
-   </pre>
-    <p>
-You can state multiple listen addresses, in the case that you are
-part of several networks or subnets.
-    </p>
-    <pre>
-  SocksListenAddress 192.168.x.x:9100 #eth0
-  SocksListenAddress 10.x.x.x:9100 #eth1
-    </pre>
-    <p>
-After this, your clients on their respective networks/subnets would specify
-a socks proxy with the address and port you specified SocksListenAddress
-to be.
-    </p>
-    <p>
-Please note that the SocksPort configuration option gives the port ONLY for
-localhost (127.0.0.1). When setting up your SocksListenAddress(es), you need
-to give the port with the address, as shown above.
-    <p>
-If you are interested in forcing all outgoing data through the central Tor
-client/relay, instead of the server only being an optional proxy, you may find
-the program iptables (for *nix) useful.
-    </p>
-
-    <hr>
-
     <a id="RelayOrBridge"></a>
     <h3><a class="anchor" href="#RelayOrBridge">Should I be a normal
 relay or bridge relay?</a></h3>
 
     <p><a href="<page docs/bridges>">Bridge relays</a> (or "bridges" for
 short)
-    are <a href="<page docs/tor-doc-relay>">Tor relays</a> that aren't
+    are <a href="<wiki>TorRelayGuide">Tor relays</a> that aren't
     listed in the public Tor directory.
     That means that ISPs or governments trying to block access to the
     Tor network can't simply block all bridges.
@@ -2591,9 +2599,10 @@ lots
     of bandwidth, you should definitely run a normal relay.
     If you're willing
     to <a href="#ExitPolicies">be an exit</a>, you should definitely
-    run a normal relay, since we need more exits. If you can't be an
-    exit and only have a little bit of bandwidth, be a bridge. Thanks
-    for volunteering!
+    run an exit relay, since we need more exits. If you can't be an
+    exit and only have a little bit of bandwidth, setup an
+    <a href="<page docs/pluggable-transports>#operator">obfs4 bridge</a>.
+    Thanks for volunteering!
     </p>
 
     <hr>
@@ -2922,14 +2931,14 @@ Yes, you do get better anonymity against some attacks.
     </p>
     <p>
 The simplest example is an attacker who owns a small number of Tor relays.
-He will see a connection from you, but he won't be able to know whether
+They will see a connection from you, but they won't be able to know whether
 the connection originated at your computer or was relayed from somebody else.
     </p>
     <p>
 There are some cases where it doesn't seem to help: if an attacker can
-watch all of your incoming and outgoing traffic, then it's easy for him
+watch all of your incoming and outgoing traffic, then it's easy for them
 to learn which connections were relayed and which started at you. (In
-this case he still doesn't know your destinations unless he is watching
+this case they still don't know your destinations unless they are watching
 them too, but you're no better off than if you were an ordinary client.)
     </p>
     <p>
@@ -2939,7 +2948,7 @@ signal to an attacker that you place a high value on your anonymity.
 Second, there are some more esoteric attacks that are not as
 well-understood or well-tested that involve making use of the knowledge
 that you're running a relay -- for example, an attacker may be able to
-"observe" whether you're sending traffic even if he can't actually watch
+"observe" whether you're sending traffic even if they can't actually watch
 your network, by relaying traffic through your Tor relay and noticing
 changes in traffic timing.
     </p>
@@ -3466,7 +3475,7 @@ keys,
     locations, exit policies, and so on. So unless the adversary can
 control
     a majority of the directory authorities (as of 2012 there are 8
-    directory authorities), he can't trick the Tor client into using
+    directory authorities), they can't trick the Tor client into using
     other Tor relays.
     </p>
 
@@ -4204,7 +4213,7 @@ only solution is to have no opinion.
     Like all anonymous communication networks that are fast enough for web
     browsing, Tor is vulnerable to statistical "traffic confirmation"
     attacks, where the adversary watches traffic at both ends of a circuit
-    and confirms his guess that they're communicating. It would be really
+    and confirms their guess that those endpoints are communicating. It would be really
     nice if we could use cover traffic to confuse this attack. But there
     are three problems here:
     </p>

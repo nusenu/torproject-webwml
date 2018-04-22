@@ -64,7 +64,7 @@ meetings around the world.</li>
     href="https://media.torproject.org/video/">Tor's Media server</a>,
     <a
     href="http://www.howcast.com/videos/90601-How-To-Circumvent-an-Internet-Proxy/">Howcast</a>,
-    and <a href="http://www.youtube.com/c/thetorproject">YouTube</a>.</li>
+    and <a href="https://www.youtube.com/user/TheTorProject">YouTube</a>.</li>
     <li>Create a poster around a theme, such as "Tor for Freedom!"</li>
     <li>Create a t-shirt design that incorporates "<a
     href="https://check.torproject.org/">Congratulations! You are using
@@ -74,18 +74,6 @@ meetings around the world.</li>
     brochures</a> in PDF and ODG format and translated to at least ten
     different languages as conversation starter.</li>
     </ol>
-
-    <a id="gsoc"></a>
-    <h2><a class="anchor" href="#gsoc">Google Summer of Code</a></h2>
-
-    <p>
-    Tor is also taking part in this year's <a
-    href="https://summerofcode.withgoogle.com/">Google
-    Summer of Code</a>! To apply but you need to be either <a
-    href="https://developers.google.com/open-source/gsoc/faq#what_are_the_eligibility_requirements_for_participation">a
-    present student or just graduated</a>. <b>See our page for <a href="<page
-    about/gsoc>">Google Summer of Code</a> for more information.</b>
-    </p>
 
     <a id="Projects"></a>
     <h2><a class="anchor" href="#Projects">Projects</a></h2>
@@ -121,9 +109,9 @@ meetings around the world.</li>
       <tr>
         <td><a href="#project-tor">Tor</a></td>
         <td>Core</td>
-        <td>C</td>
+        <td>C, Rust</td>
         <td>Heavy</td>
-        <td>nickm, athena, arma, dgoulet, asn, teor</td>
+        <td>nickm, arma, dgoulet, asn, teor</td>
       </tr>
 
       <tr>
@@ -186,7 +174,7 @@ meetings around the world.</li>
         <td><a href="#project-tormessenger">Tor Messenger</a></td>
         <td>Bundle</td>
         <td>JavaScript, XUL, Scripting</td>
-        <td>Heavy</td>
+        <td>None</td>
         <td>arlolra, boklm, sukhe</td>
       </tr>
 
@@ -247,19 +235,11 @@ meetings around the world.</li>
       </tr>
 
       <tr>
-        <td><a href="#project-atlas">Atlas</a></td>
+        <td><a href="#project-atlas">Relay Search</a></td>
         <td>Client Service</td>
         <td>JavaScript</td>
         <td>Light</td>
         <td>irl</td>
-      </tr>
-
-      <tr>
-        <td><a href="#project-compass">Compass</a></td>
-        <td>Client Service</td>
-        <td>Python</td>
-        <td>None</td>
-        <td></td>
       </tr>
 
       <tr>
@@ -378,7 +358,8 @@ meetings around the world.</li>
 
     <p>
     <b>Project Ideas:</b><br />
-    <i><a href="#improveOnionServices">Help improve Tor onion services</a></i><br />
+  #  <i><a href="#improveOnionServices">Help improve Tor onion services</a></i><br />
+    <i><a href="#pythonTorClient">Python Tor Client</a></i><br />
     <i><a href="#torFuzzing">Fuzzing coverage of Tor</a></i><br />
     <i><a href="#relayCryptoParallelism">Relay crypto parallelism</a></i><br />
     <i><a href="#anonymousLocalCountStatistics">Anonymous local count statistics</a></i><br />
@@ -404,9 +385,7 @@ meetings around the world.</li>
 
     <p>
     <b>Project Ideas:</b><br />
-    <i><a href="#feedbackExtension">Feedback Extension for Tor Browser</a></i><br />
-    <i><a href="#torBrowserCrashReport">Crash Reporter for Tor Browser</a></i><br />
-    <i><a href="#fasterTorBrowser">Make Tor Browser Faster</a></i>
+    <i><a href="#metadataremoval">Remove metadata from Tor Browser uploads</a></i><br />
     </p>
 
     <a id="project-httpseverywhere"></a>
@@ -539,6 +518,11 @@ meetings around the world.</li>
     Tor.
     </p>
 
+    <p>
+    <b>Project Ideas:</b><br />
+    <i><a href="#pythonTorClient">Python Tor Client</a></i>
+    </p>
+
     <a id="project-txtorcon"></a>
     <h3><a href="https://txtorcon.readthedocs.io/en/latest/">Txtorcon</a> (<a
     href="https://github.com/meejah/txtorcon">code</a>, <a
@@ -570,13 +554,13 @@ meetings around the world.</li>
     </p>
 
     <a id="project-atlas"></a>
-    <h3><a href="https://atlas.torproject.org/">Atlas</a> (<a
+    <h3><a href="https://metrics.torproject.org/rs.html">Relay Search</a> (<a
     href="https://gitweb.torproject.org/atlas.git">code</a>)</h3>
 
     <p>
-    Atlas is a web application to discover Tor relays and bridges. It provides
-    useful information on how relays are configured along with graphics about
-    their past usage.
+    Relay Search is a web application to discover Tor relays and bridges. It
+    provides useful information on how relays are configured along with graphics
+    about their past usage.
     </p>
 
     <p>
@@ -589,19 +573,8 @@ meetings around the world.</li>
     been discontinued.
     </p>
 
-    <a id="project-compass"></a>
-    <h3><a href="https://compass.torproject.org/">Compass</a> (<a
-    href="https://gitweb.torproject.org/compass.git">code</a>, <a
-    href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_review&status=new&status=reopened&component=Metrics%2FCompass&order=priority">bug
-    tracker</a>)</h3>
-
-    <p>
-    Compass is a web and command line application that filters and
-    aggregates the Tor relays based on various attributes.
-    </p>
-
     <a id="project-onionoo"></a>
-    <h3><a href="https://onionoo.torproject.org/">Onionoo</a> (<a
+    <h3><a href="https://metrics.torproject.org/onionoo.html">Onionoo</a> (<a
     href="https://gitweb.torproject.org/onionoo.git">code</a>,
     <a href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_review&status=new&status=reopened&component=Metrics%2FOnionoo&order=priority">bug tracker</a>)</h3>
 
@@ -750,10 +723,10 @@ meetings around the world.</li>
 
     <p>
     You may find some of these projects to be good ideas for <a href="<page
-    about/gsoc>">Google Summer of Code</a>. We have labelled each idea with
+    about/gsoc>">Google Summer of Code</a> or the Tor Summer of Privacy. We have labelled each idea with
     which of our <a href="<page about/corepeople>">core developers</a> would be
     good mentors. If one or more of these ideas looks promising to you, please
-    <a href="<page about/contact>">contact us</a> to discuss your plans rather
+    <a href="mailto:tor-sop@lists.torproject.org">contact us</a>  to discuss your plans rather
     than sending blind applications. You may also want to propose your own
     project idea &mdash; which often results in the best applications.
     </p>
@@ -761,6 +734,70 @@ meetings around the world.</li>
     <ol>
 
 	#Keep old ids in case of incoming links.
+    <a id="metadataremoval"></a>
+    <li>
+    <b>Remove metadata from Tor Browser uploads</b>
+    <br>
+    Likely Mentors: <i>Arthur D. Edelstein (arthuredelstein)</i>
+    <p>
+    Tor Browser is a privacy-preserving web browser used by millions of
+    users around the world. We are looking for a programmer fluent in JS
+    and C++ to implement new features to work closely with the Tor Browser
+    team.
+    </p>
+    <p>
+    Image files, especially photos taken by smartphones,
+    often carry hidden privacy-violating metadata, typically specified by
+    the EXIF format. Such metadata can include the user's geolocation and
+    various unique identifiers. In order to protect the user's identity,
+    we would like the intern to modify the file-upload feature in Tor
+    Browser such that metadata in image files is automatically removed
+    before the image is uploaded to a server. Ideally, the  summer intern would
+    implement this feature for both desktop and mobile Tor Browser. If
+    there is time, we can envision sanitizing other kinds of uploaded
+    files, including movies, audio, PDFs and Office documents.
+    </p>
+    <p>
+    For more information <a href="https://trac.torproject.org/projects/tor/ticket/24965">see its ticket</a>.
+    Please also see <a href="https://mat.boum.org">the Metadata Anonymisation Toolkit (MAT)</a> for a
+    similar project that could serve as inspiration.
+    </p>
+    </li>
+
+    <a id="pythonTorClient"></a><a id="pythonTorClient"></a>
+    <li>
+    <b>Python Tor Client</b>
+    <br>
+    Language: <i>Python</i>
+    <br>
+    Likely Mentors: <i>Damian (atagar), teor</i>
+    <br><br>
+    <p>
+<b><a href="https://stem.torproject.org/">Stem</a></b> is our Python implementation of Tor's varous protocols. Traditionally this included <a href="https://stem.torproject.org/tutorials/the_little_relay_that_could.html">stem.control</a> for Tor's <a href="https://gitweb.torproject.org/torspec.git/tree/control-spec.txt">ControlPort</a> and <a href="https://stem.torproject.org/tutorials/mirror_mirror_on_the_wall.html">stem.descriptor</a> to download from Tor's <a href="https://gitweb.torproject.org/torspec.git/tree/dir-spec.txt">DirPort</a>. But recently we added a third to this family, <b><a href="https://lists.torproject.org/pipermail/tor-dev/2018-February/012905.html">stem.client</a></b>, that speaks Tor's <a href="https://gitweb.torproject.org/torspec.git/tree/tor-spec.txt">ORPort protocol</a>: the relay protocol for usage of the Tor network itself.
+    </p>
+
+    <p>
+This opens interesting opportunities we've never had before such as...
+    </p>
+
+    <ul>
+      <li>Construct a full three-hop circuit that can make GET requests and DNS lookups. If done right this might allow simple usage of the Tor network without even having Tor installed!</li>
+      <li>Expand <a href="https://stem.torproject.org/tutorials/mirror_mirror_on_the_wall.html#where-can-i-get-the-current-descriptors">descriptor downloading</a> to use Tor's ORPort as an optional alternative for the DirPort. Following this we could adjust Tor so <a href="https://trac.torproject.org/projects/tor/ticket/19129">Fallback Directories no longer require a DirPort</a>.</li>
+      <li>Download hidden service descriptors. Unlike relays, the descriptors for hidden services are only available over the ORPort. Once <a href="https://trac.torproject.org/projects/tor/ticket/17945">ticket 17945</a> is merged v3 HS descriptor downloads will require a multi-hop circuit. This requires an understanding of Tor's <a href="https://gitweb.torproject.org/torspec.git/tree/rend-spec-v3.txt">hidden service</a> specifications, particularly the HSDir hash ring.</li>
+      <li>Authenticate our ORPort connection, checking that ORPorts we connect to have the right key fingerprint.</li>
+      <li>Add protocol level integration test of Tor's ORPort, for instance exercising edge cases in circuit construction and extension.</li>
+      <li>Connect to a hidden service to check if it's up or not.</li>
+    </ul>
+
+    <p>
+And more! Applicants are encouraged to get a decent understanding of <a href="https://gitweb.torproject.org/torspec.git/tree/tor-spec.txt">Tor's ORPort protocol</a> and come up with ideas of their own for neat directions that we can take this. To be clear this is <b>not</b> a particularly easy beginner project as it involves expanding stem.client to support more of Tor's ORPort protocol and crypto.
+    </p>
+
+    <p>
+<b>As part of applying for this project please get your hands wet with the codebase by contributing some patches for <a href="https://stem.torproject.org/faq.html#how-do-i-get-started">Stem</a>!</b>
+    </p>
+    </li>
+<!--
     <a id="improveOnionServices"></a><a id="improveHiddenServices"></a>
     <li>
     <b>Help improve Tor onion services</b>
@@ -797,7 +834,7 @@ href="https://lists.torproject.org/pipermail/tor-dev/2016-October/011514.html">v
 ideas.
     </p>
     </li>
-
+-->
     <a id="torFuzzing"></a>
     <li>
     <b>Fuzzing coverage of Tor</b>
@@ -873,7 +910,7 @@ For more information <a href="https://trac.torproject.org/projects/tor/ticket/75
     <li>
     <b>Improved SOCKS5 variant</b>
     <br>
-    Likely Mentors: <i>Nick (nickm), David Goulet (dgoulet)</i>
+    Likely Mentors: <i>Nick (nickm), David Goulet (dgoulet), meejah</i>
     <br><br>
     <p>
 In proposal 229, we describe a bunch of additional SOCKS extensions
@@ -887,6 +924,7 @@ or more applications.  Or maybe to torsocks?
 For more information <a href="https://trac.torproject.org/projects/tor/ticket/12456">see its ticket</a>.
     </p>
     </li>
+
 
 	#Keep old ids in case of incoming links.
     <a id="onionServiceCryptoParallelism"></a><a id="hiddenServiceCryptoParallelism"></a>
@@ -958,7 +996,7 @@ network: are you up for it?
 For more information <a href="https://trac.torproject.org/projects/tor/ticket/17811">see its ticket</a>.
     </p>
     </li>
-
+<!--
     <a id="feedbackExtension"></a>
     <li>
     <b>Feedback Extension for Tor Browser</b>
@@ -982,45 +1020,7 @@ For more information <a href="https://trac.torproject.org/projects/tor/ticket/17
     feedback process.
     </p>
     </li>
-
-    <a id="torBrowserCrashReport"></a>
-    <li>
-    <b>Crash Reporter for Tor Browser</b>
-    <br>
-    Likely Mentors: <i>Tom Ritter (tjr)</i>, <i>Georg (GeKo)</i>
-    <p>
-    Currently Tor Browser disables the Crash Reporter. We would like to
-    build it reproducible, enable it, and configure it to report crashes
-    containing non-detailed and impersonal information to Tor, on a .onion
-    submission platform that would allow us to view and explore the
-    crashes.
-    </p>
-
-    <p>
-    The project will entail enabling the Crash Report on Tor Browser and
-    creating a backend to receive reports from it. Once created, the crash
-    reporter data will be analyzed and modified to fit Tor's requirements
-    for personal data collection. As time permits, we will update the
-    build system to ensure the crash reporter is built reproducibly and
-    add data analysis tools for the crash report database to visualize top
-    crashers and similar statistics.
-    </p>
-    </li>
-
-    <a id="fasterTorBrowser"></a>
-    <li>
-    <b>Make Tor Browser Faster</b>
-    <br>
-    Likely Mentors: <i>Tom Ritter (tjr)</i>, <i>Georg (GeKo)</i>
-    <p>
-    This project will enable and take advantage of HTTP/2, the Alt-Srv
-    header, and tor's new single hop .onion mode to enable websites to
-    transparently move their traffic to a .onion address. In addition to
-    improvements in security, we will benchmark page load and paint times
-    under normal HTTP/1.1, HTTP/2, and when taking advantage of features
-    such as Server Push.
-    </p>
-    </li>
+-->
 
     <a id="ahmiaSearch"></a>
     <li>
@@ -1051,37 +1051,6 @@ For more information <a href="https://trac.torproject.org/projects/tor/ticket/17
     search itself works without client-side JavaScript.
     </p>
 
-    <p>
-    There are several possible directions for this project, including...
-    </p>
-
-    <ol>
-      <li>Automate blacklisting (very important)<br />
-        <ul>
-          <li>Fetch a list of child abuse media sites</li>
-          <li>Remove these sites from the search results</li>
-        </ul>
-      </li>
-      <li>Add onion services function (very important)<br />
-        <ul>
-          <li>You can add onions using HTML form</li>
-          <li>Call the crawler immidiately when a new site is added</li>
-        </ul>
-      </li>
-      <li>Elasticsearch<br />
-        <ul>
-          <li>Must be updated to 5.X.X sooner or later</li>
-          <li>Adjust the settings</li>
-          <li>Automatically remove data older than, for instance, 90 days</li>
-        </ul>
-      </li>
-      <li>Maintainance<br />
-        <ul>
-          <li>Update all software dependencies</li>
-          <li>Automate crash recovery for Tor, Elasticsearch and crawler</li>
-        </ul>
-      </li>
-    </ol>
     </li>
 
 <!--

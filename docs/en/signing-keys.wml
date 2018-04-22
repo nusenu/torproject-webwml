@@ -16,7 +16,8 @@
     <ul>
     <li>The Tor Browser Developers (0x93298290),
     Mike Perry (0x0E3A92E4), Georg Koppen (0x4B7C3223),
-    Nicolas Vigier (0xD0220E4B) and Linus Nordberg (0x23291265)
+    Nicolas Vigier (0xD0220E4B), Linus Nordberg (0x23291265)
+    and Arthur Edelstein (0xD752F538C0D38C3A)
     sign the Tor Browser releases.</li>
     <li>Roger Dingledine (0x28988BF5 and 0x19F78451) or Nick Mathewson
      (0xFE43009C4607B1FB with signing key 0x6AFEE6D49E92B601)
@@ -29,7 +30,7 @@
     <li>David Goulet (0x42E86A2A11F48D36) signs Torsocks releases.</li>
     <li>Sukhbir Singh (0xB01C8B006DA77FAA) signs Tor Messenger and TorBirdy releases.</li>
     <li>Other developers include Peter Palfrader (0xC82E0039, or its
-    subkey 0xE1DEC577) and Jacob Appelbaum (0xFA7F0E44D487F03F).</li>
+    subkey 0xE1DEC577).</li>
     </ul>
 
     The fingerprints for the keys should be:
@@ -110,21 +111,20 @@
     uid                  Linus Nordberg &lt;linus@torproject.org&gt;
     sub   4096R/B5F7D1B1 2016-04-14 [expires: 2017-04-14]
 
-    pub   4096R/4B7C3223 2013-07-30
+    pub   rsa4096/0x94373AA94B7C3223 2013-07-30
           Key fingerprint = 35CD 74C2 4A9B 15A1 9E1A  81A1 9437 3AA9 4B7C 3223
     uid                  Georg Koppen &lt;gk@torproject.org&gt;
-    sub   4096R/0x2F7477373D6B000D 2016-08-01 [expires: 2017-09-11]
-    sub   4096R/0xAA602CC00C257CF7 2016-08-01 [expires: 2017-09-11]
+    sub   rsa4096/0x5778071EE2DE675B 2017-09-11 [expires: 2018-09-11]
+    sub   rsa4096/0x72E841BB93148AD2 2017-09-11 [expires: 2018-09-11]
 
     pub   4096R/D0220E4B 2014-03-19
           Key fingerprint = 4A90 646C 0BAE D9D4 56AB  3111 E5B8 1856 D022 0E4B
     uid                      Nicolas Vigier (TBB Builds Signing Key) &lt;boklm@torproject.org&gt;
 
-    pub   4096R/FA7F0E44D487F03F 2014-06-27 [expires: 2024-06-24]
-          Key fingerprint = D6A9 48CF 297F 7539 30B4  756A FA7F 0E44 D487 F03F
-    uid                          Jacob Appelbaum &lt;jacob@torproject.org&gt;
-    sub   3072R/36A3F38A 2015-07-01 [expires: 2016-06-30]
-    sub   3072R/45EDE84B 2015-07-01 [expires: 2016-06-30]
+    pub   2048R/D752F538C0D38C3A 2014-12-10
+    Key fingerprint = 20B2 4CEF E6AF D615 0B6A  6F18 D752 F538 C0D3 8C3A
+    uid               [  full  ] Arthur Edelstein <arthuredelstein@gmail.com>
+    sub   2048R/3306E88D27211E0B 2014-12-10
 
     pub   4096R/0x4E2C6E8793298290 2014-12-15 [expires: 2020-08-24]
           Key fingerprint = EF6E 286D DA85 EA2A 4BA7  DE68 4E2C 6E87 9329 8290
